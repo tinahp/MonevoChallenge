@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/Tizspec/Desktop/Monevo">
+        <classes>
+            <class name="testSuites.LoanInformation">
+                <methods>
+                    <include name="LoanDetails"/>
+                    <include name="AboutYou"/>
+                    <include name="AddressInformation"/>
+                    <include name="EmploymentDetails"/>
+                    <include name="Finances"/>
+                    <exclude name="NegativeLoanDetails"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
