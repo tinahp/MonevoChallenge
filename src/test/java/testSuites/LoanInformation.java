@@ -18,14 +18,15 @@ import java.util.concurrent.TimeUnit;
 public class LoanInformation extends BaseClass {
 
     @BeforeTest
-    public void innit() {driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    public void innit() {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @AfterTest
     public void quit() {
     }
 
-//    Positive Testcase
+    //    Positive Testcase
     @Test(priority = 0)
     public void LoanDetails() throws InterruptedException {
         LoanDetails loanDetails = new LoanDetails(driver);
@@ -41,7 +42,7 @@ public class LoanInformation extends BaseClass {
     }
 
     @Test(priority = 1)
-    public void AboutYou()throws InterruptedException {
+    public void AboutYou() throws InterruptedException {
         AboutYou aboutYou = new AboutYou(driver);
 
 //        User is able to click on their preferred Title
@@ -52,7 +53,7 @@ public class LoanInformation extends BaseClass {
         aboutYou.inputLastName();
 //        User is able to click on the continue button
         aboutYou.clickAboutContinue();
-//         User is able to input the date of birth in the input field
+//        User is able to input the date of birth in the input field
         aboutYou.inputDateOfBirth();
 //        User is able to click on the date of birth continue button
         aboutYou.clickDobButton();
@@ -60,16 +61,16 @@ public class LoanInformation extends BaseClass {
         aboutYou.inputEmailAddress();
 //        User is able to click continue in the continue button
         aboutYou.clickInputContinue();
-//         User is able to input the valid phone number in the input field
+//        User is able to input the valid phone number in the input field
         aboutYou.inputPhoneNumber();
         //printout response based on validity status
         aboutYou.clickPhoneContinue();
-        if (driver.getCurrentUrl ().contains ("https://qa-5.monevo.com/apply/about-you/mobile-number"))
+        if (driver.getCurrentUrl().contains("https://qa-5.monevo.com/apply/about-you/mobile-number"))
             // For Pass
-            System.out.println ("The Page URL contains/mobile-number 07897641544");
+            System.out.println("The Page URL contains/mobile-number 07897641544");
         else
             // For Fail
-            System.out.println ("The Page URL does not contain /mobile-number");
+            System.out.println("The Page URL does not contain /mobile-number");
 //        User is able to select a marital status
         aboutYou.clickCivilUnion();
 //        User is able to select how many dependant they have
@@ -78,38 +79,38 @@ public class LoanInformation extends BaseClass {
 
 
     @Test(priority = 2)
-    public void AddressInformation()throws InterruptedException {
+    public void AddressInformation() throws InterruptedException {
         AddressInformation addressInformation = new AddressInformation(driver);
 
-//      user is able to input postcode in the input field
+//      User is able to input postcode in the input field
         addressInformation.inputPostCode();
-//      user is able to click on the find postcode to search
+//      User is able to click on the find postcode to search
         addressInformation.clickPostCode();
-//       Apply an explicit wait to enable a successful search
-        WebDriverWait wait =new WebDriverWait(driver, 50);
+//      Apply an explicit wait to enable a successful search
+        WebDriverWait wait = new WebDriverWait(driver, 50);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[normalize-space()='77 Sedgeborough Road']")));
-//        User is able to select from the resident address listed
+//      User is able to select from the resident address listed
         addressInformation.inputResidentType();
-//        User is able to click what type of resident it is
+//      User is able to click what type of resident it is
         addressInformation.clickHomeOwnerMortgage();
-//        User is able to state how long they have lived there
+//       User is able to state how long they have lived there
         addressInformation.clickSixMonth();
-//        User is able to state previous address
+//       User is able to state previous address
         addressInformation.clickPreviousAddress();
-//        User is able to click on the previous address find button to search
+//       User is able to click on the previous address find button to search
         addressInformation.clickPreviousAddressBtn();
-//       Apply an explicit wait to enable a successful search
-        WebDriverWait wait1 =new WebDriverWait(driver, 50);
+//      Apply an explicit wait to enable a successful search
+        WebDriverWait wait1 = new WebDriverWait(driver, 50);
         wait1.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[normalize-space()='143 Dragon Lane']")));
-//        User is able to click on the listed address displayed
+//       User is able to click on the listed address displayed
         addressInformation.inputAddressType();
-//        User is able to state how long they have lived there
+//       User is able to state how long they have lived there
         addressInformation.clickAboutYear();
 //        addressInformation.clickAboutYear1();
     }
 
-    @Test (priority = 3)
-    public void EmploymentDetails()throws InterruptedException {
+    @Test(priority = 3)
+    public void EmploymentDetails() throws InterruptedException {
         EmploymentDetails employmentDetails = new EmploymentDetails(driver);
 
 //        User is able to select employment status from the displayed options
@@ -131,42 +132,49 @@ public class LoanInformation extends BaseClass {
 //        employmentDetails.clickWeeklyBtn();
     }
 
-    @Test(priority = 4)
-    public void Finances()throws InterruptedException {
-        Finances finances = new Finances(driver);
 
-//       User is able to click the bank of their choice eg Halifax
-        finances.clickHalifax();
-//        User is able to state yearly pre-tax income in the input field
-        finances.inputPretax();
-//       System is able to get the pre-tax estimation
-        finances.viewPreTaxEstimation();
-//        System is able to print pre-tax estimation on the terminal
-        System.out.println("£166.67");
-//        User is able to click on the pre-tax button to continue
-        finances.clickPreTaxButtn();
-//       User is able to input monthly mortgage costs in the input field
-        finances.inputMonthlyMortgage();
-//        User is able to click on the monthly mortgage costs
-        finances.clickMonthlyMortgage();
-//       User is able to input monthly loan payments
-        finances.inputMonthlyLoan();
-        //Scroll into the element using the javaScript Executor and click continue
-        WebElement Scroll = driver.findElement(By.xpath("//button[@id='continue-button']"));
-         JavascriptExecutor js = (JavascriptExecutor) driver;
-        Thread.sleep(9000);
-         js.executeScript("arguments[0].click();", Scroll);
-//        finances.clickMonthlyLoan();
-//       User is able to input other monthly payments in the input field
-        finances.inputOtherBill();
-//        User is able to click on Terms and Condition check box
-        finances.clickTermsCondition();
-//        User is able to click on indicate email option check box
-        finances.clickIndicateEmails();
-//        User is able to click on the get results button
-        finances.clickGetResults();
 
-  }
+        @Test(priority = 4)
+        public void Finances()throws InterruptedException {
+            Finances finances = new Finances(driver);
+
+//          User is able to click the bank of their choice eg Halifax
+            finances.clickHalifax();
+//          User is able to state yearly pre-tax income in the input field
+            finances.inputPretax();
+//          System is able to get the pre-tax estimation
+            finances.viewPreTaxEstimation();
+//          System is able to print pre-tax estimation on the terminal
+            System.out.println("£166.67");
+//          User is able to click on the pre-tax button to continue
+            finances.clickPreTaxButtn();
+//          User is able to input monthly mortgage costs in the input field
+            finances.inputMonthlyMortgage();
+//          User is able to click on the monthly mortgage costs
+            finances.clickMonthlyMortgage();
+//          User is able to input monthly loan payments
+            finances.inputMonthlyLoan();
+//          User is able to click monthly loan payments
+            finances.clickMonthlyLoan();
+//          User is able to click monthly loan payments
+            finances.clickMonthlyLoan();
+//          User is able to input other monthly payments in the input field
+            finances.inputOtherBill();
+//          User is able to click the other monthly payments button to continue
+            finances.clickMonthlyLoan();
+//          User is able to input other monthly payments button to continue
+            finances.inputOtherBill();
+//          User is able to click other monthly payments button to continue
+            finances.clickMonthlyLoan();
+//          User is able to click on Terms and Condition check box
+            finances.clickTermsCondition();
+//          User is able to click on indicate email option check box
+            finances.clickIndicateEmails();
+//          User is able to click on the get results button
+//          finances.clickGetResults();
+        }
+
+
         //Negative Testcase Scenerio
 
         @Test(priority = 5)
